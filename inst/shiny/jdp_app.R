@@ -5,7 +5,7 @@ library("magrittr")
 library("DT")
 library("ggplot2")
 
-nTeam <- 6
+nTeam <- 10
 nmatch <- 8
 nPlayer <- 16
 init_Bank <- 20
@@ -62,13 +62,6 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                 shiny::tabsetPanel(id = "inTabset",
                                    shiny::tabPanel("Round 1", value="panel1",
                                                    fluidPage(
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table1")),
-                                                       column(width = 5, plotOutput("Bank1"), offset = 2),
-                                                     ),
-                                                     shiny::br(),
-                                                     shiny::br(),
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -82,27 +75,37 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 
                                                        column(offset = 2, width = 5, plotOutput("bets1"))
                                                      ),
-
                                                      fluidRow(
-                                                       column(width = 5, actionButton("confirm_bets1", "Confirm Bets")
-                                                       ),
-                                                       column(offset = 2, width = 5, actionButton("play_game", "Match results")
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets1",
+                                                                                          label = "Confirm Bets",
+                                                                                          type = "primary",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%"))),
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     shiny::h3("Matches"),
+                                                     fluidRow(
+                                                       column(width =5, DT::DTOutput("table1")),
+                                                       column(width = 5, plotOutput("Bank1"), offset = 2),
+                                                     ),
+
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     fluidRow(
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "play_game1",
+                                                                                          label = "Match Results",
+                                                                                          type = "warning",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
                                                    )
                                    ),
 
                                    shiny::tabPanel("Round 2", value="panel2",
                                                    fluidPage(
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table2")),
-                                                       column(width = 5,plotOutput("Bank2"), offset = 2),
-
-                                                     ),
-                                                     shiny::br(),
-                                                     shiny::br(),
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -116,28 +119,37 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 
                                                        column(offset = 2, width = 5, plotOutput("bets2"))
                                                      ),
-
                                                      fluidRow(
-                                                       column(width = 5, actionButton("confirm_bets2", "Confirm Bets")
-                                                       ),
-                                                       column(offset = 2, width = 5, actionButton("play_game2", "Match results")
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets2",
+                                                                                          label = "Confirm Bets",
+                                                                                          type = "primary",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%"))),
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     shiny::h3("Matches"),
+                                                     fluidRow(
+                                                       column(width =5, DT::DTOutput("table2")),
+                                                       column(width = 5, plotOutput("Bank2"), offset = 2),
+                                                     ),
+
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     fluidRow(
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "play_game2",
+                                                                                          label = "Match Results",
+                                                                                          type = "warning",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
                                                    )
                                    ),
 
-                                   shiny::tabPanel("Semi finals", value="panel2",
-
+                                   shiny::tabPanel("Round 3", value="panel3",
                                                    fluidPage(
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table3")),
-                                                       column(width = 5,plotOutput("Bank3"), offset = 2),
-
-                                                     ),
-                                                     shiny::br(),
-                                                     shiny::br(),
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -151,28 +163,37 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 
                                                        column(offset = 2, width = 5, plotOutput("bets3"))
                                                      ),
-
                                                      fluidRow(
-                                                       column(width = 5, actionButton("confirm_bets3", "Confirm Bets")
-                                                       ),
-                                                       column(offset = 2, width = 5, actionButton("play_game3", "Match results")
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets3",
+                                                                                          label = "Confirm Bets",
+                                                                                          type = "primary",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%"))),
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     shiny::h3("Matches"),
+                                                     fluidRow(
+                                                       column(width =5, DT::DTOutput("table3")),
+                                                       column(width = 5, plotOutput("Bank3"), offset = 2),
+                                                     ),
+
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     fluidRow(
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "play_game3",
+                                                                                          label = "Match Results",
+                                                                                          type = "warning",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
                                                    )
                                    ),
 
-                                   shiny::tabPanel("3rd/4th Place", value="panel3",
-
+                                   shiny::tabPanel("3rd/4th Place", value="panel4",
                                                    fluidPage(
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table4")),
-                                                       column(width = 5,plotOutput("Bank4"), offset = 2),
-
-                                                     ),
-                                                     shiny::br(),
-                                                     shiny::br(),
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -186,28 +207,37 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 
                                                        column(offset = 2, width = 5, plotOutput("bets4"))
                                                      ),
-
                                                      fluidRow(
-                                                       column(width = 5, actionButton("confirm_bets4", "Confirm Bets")
-                                                       ),
-                                                       column(offset = 2, width = 5, actionButton("play_game4", "Match results")
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets4",
+                                                                                          label = "Confirm Bets",
+                                                                                          type = "primary",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%"))),
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     shiny::h3("Matches"),
+                                                     fluidRow(
+                                                       column(width =5, DT::DTOutput("table4")),
+                                                       column(width = 5, plotOutput("Bank4"), offset = 2),
+                                                     ),
+
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     fluidRow(
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "play_game4",
+                                                                                          label = "Match Results",
+                                                                                          type = "warning",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
                                                    )
                                    ),
 
-                                   shiny::tabPanel("Final", value="panel2",
-
+                                   shiny::tabPanel("Final", value="panel5",
                                                    fluidPage(
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table5")),
-                                                       column(width = 5,plotOutput("Bank5"), offset = 2),
-
-                                                     ),
-                                                     shiny::br(),
-                                                     shiny::br(),
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -221,14 +251,32 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 
                                                        column(offset = 2, width = 5, plotOutput("bets5"))
                                                      ),
-
                                                      fluidRow(
-                                                       column(width = 5, actionButton("confirm_bets5", "Confirm Bets")
-                                                       ),
-                                                       column(offset = 2, width = 5, actionButton("play_game5", "Match results")
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets5",
+                                                                                          label = "Confirm Bets",
+                                                                                          type = "primary",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%"))),
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     shiny::h3("Matches"),
+                                                     fluidRow(
+                                                       column(width =5, DT::DTOutput("table5")),
+                                                       column(width = 5, plotOutput("Bank5"), offset = 2),
+                                                     ),
+
+                                                     shiny::br(),
+                                                     shiny::br(),
+                                                     fluidRow(
+                                                       column(width = 2,
+                                                              dipsaus::actionButtonStyled(inputId = "play_game5",
+                                                                                          label = "Match Results",
+                                                                                          type = "warning",
+                                                                                          class = "btn-xs",
+                                                                                          style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
                                                    )
                                    )
                 )
@@ -401,7 +449,7 @@ server <- function(input, output, session) {
   }
   )
 
-  shiny::observeEvent(input$play_game, {
+  shiny::observeEvent(input$play_game1, {
 
     id1 <- seq(1, 15, by = 2)
     id2 <- seq(2, 16, by = 2)
