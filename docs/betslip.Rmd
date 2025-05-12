@@ -1,0 +1,110 @@
+---
+title: ""
+output: pdf_document
+fontsize: 12pt
+header-includes:
+- \pagenumbering{gobble}
+---
+
+
+# Round 1
+
+Team:
+
+
+```{=latex}
+\begin{center}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+&P1 &P2 &P3 &P4 & P5 & P6 & P7 & P8 & P9 & P10 & P11 & P12 & P13 & P14 & P15 & P16\\
+\hline
+&&&&&&&&&&&&&&&&\\
+Stake &&&&&&&&&&&&&&&&\\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\hrulefill
+
+```
+
+<hr style="border-top: dotted 1px;" />
+
+# Round 2
+
+Team:
+
+
+
+```{=latex}
+\begin{center}
+\begin{tabular}{l|c|c|c|c|c|c|c|c|}
+&P1 &P2 &P3 &P4 & P5 & P6 & P7 & P8\\
+\hline
+&&&&&&&&\\
+Stake &&&&&&&&\\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\hrulefill
+
+```
+
+# Round 3
+
+Team:
+
+```{=latex}
+\begin{center}
+\begin{tabular}{l|c|c|c|c|}
+&P1 &P2 &P3 &P4\\
+\hline
+&&&&\\
+Stake &&&&\\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\hrulefill
+
+```
+
+\newpage
+
+# Round 4
+
+Team:
+
+```{=latex}
+\begin{center}
+\begin{tabular}{l|c|c|}
+&P1 &P2\\
+\hline
+&&\\
+Stake &&\\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\hrulefill
+
+```
+
+# Round 5
+
+Team:
+
+```{=latex}
+\begin{center}
+\begin{tabular}{l|c|c|}
+&P1 &P2\\
+\hline
+&&\\
+Stake &&\\
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+\hrulefill
+
+```
