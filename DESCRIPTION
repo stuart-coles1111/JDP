@@ -1,12 +1,11 @@
 Package: JDP
 Type: Package
-Title: What the Package Does (Title Case)
+Title: JOGO DO PAU
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Stuart Coles
+Maintainer: Stuart Coles <stuart.coles1111@gmail.com>
+Description: Contains functionality and data for Jogo do Pau Smartodds activity.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
