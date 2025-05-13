@@ -333,11 +333,12 @@ server <- function(input, output, session) {
 
 
 
-  df2 <- data.frame(Team = (1:nTeam) %>% as.character, Bank = init_Bank)
+  df2 <- data.frame(Team = (1:nTeam), Bank = init_Bank)
+
   output$Bank1 <- renderPlot({
     ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold")) +
-      geom_hline(yintercept = init_Bank, colour="red")
+      geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
   })
 
 
@@ -351,16 +352,17 @@ server <- function(input, output, session) {
     values$m1 <- temp_m %>% as.numeric %>% matrix(nrow = nrow(input$m1), ncol=ncol(input$m1))
     bet_sums <- apply(values$m1, 1, sum)
     values$Bank <- values$Bank - bet_sums
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = bet_sums)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
-    output$bets1 <- renderPlot({
+
+      output$bets1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked")
+        geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -372,16 +374,16 @@ server <- function(input, output, session) {
     values$m2 <- temp_m %>% as.numeric %>% matrix(nrow = nrow(input$m2), ncol=ncol(input$m2))
     bet_sums <- apply(values$m2, 1, sum)
     values$Bank <- values$Bank - bet_sums
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = bet_sums)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked")
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -393,16 +395,16 @@ server <- function(input, output, session) {
     values$m3 <- temp_m %>% as.numeric %>% matrix(nrow = nrow(input$m3), ncol=ncol(input$m3))
     bet_sums <- apply(values$m3, 1, sum)
     values$Bank <- values$Bank - bet_sums
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = bet_sums)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked")
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -414,16 +416,16 @@ server <- function(input, output, session) {
     values$m4 <- temp_m %>% as.numeric %>% matrix(nrow = nrow(input$m4), ncol=ncol(input$m4))
     bet_sums <- apply(values$m4, 1, sum)
     values$Bank <- values$Bank - bet_sums
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = bet_sums)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked")
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -435,16 +437,16 @@ server <- function(input, output, session) {
     values$m5 <- temp_m %>% as.numeric %>% matrix(nrow = nrow(input$m5), ncol=ncol(input$m5))
     bet_sums <- apply(values$m5, 1, sum)
     values$Bank <- values$Bank - bet_sums
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = bet_sums)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked")
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -497,24 +499,24 @@ server <- function(input, output, session) {
         formatStyle(columns = colnames(.$x$data), `font-size` = "18px")
     })
 
-    df2 <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = Winnings)
+    df2 <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = Winnings)
     df2$win <- ifelse(df2$Winnings > 0, 1, 0) %>% as.factor
     output$Bank1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                      axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
     output$bets1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none")
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
     })
 
     output$Bank2 <-  renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                      axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
     dfn2 <- data.frame(
@@ -629,24 +631,24 @@ server <- function(input, output, session) {
     })
 
 
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = Winnings)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = Winnings)
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none")
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
     })
 
     output$Bank3<- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
@@ -762,24 +764,24 @@ server <- function(input, output, session) {
         formatStyle(columns = colnames(.$x$data), `font-size` = "18px")
     })
 
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = Winnings)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = Winnings)
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none")
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
     })
 
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
 
 
     })
@@ -839,22 +841,22 @@ server <- function(input, output, session) {
 
 
 
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = Winnings)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = Winnings)
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none")
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
     })
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
   }
@@ -912,17 +914,17 @@ server <- function(input, output, session) {
 
 
 
-    df <- data.frame(Team = (1:nTeam) %>% as.character, Bank = values$Bank, Winnings = Winnings)
+    df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = Winnings)
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red")
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none")
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
     })
   }
   )
