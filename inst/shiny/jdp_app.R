@@ -336,7 +336,7 @@ server <- function(input, output, session) {
 
   output$Bank1 <- renderPlot({
     ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"),
+                                                                                   axis.title=element_text(size=18),
                                                                                    title=element_text(size=20)) +
       geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
   })
@@ -355,13 +355,13 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
@@ -377,12 +377,12 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
@@ -398,12 +398,12 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
@@ -419,12 +419,12 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
@@ -440,12 +440,12 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
@@ -503,19 +503,19 @@ server <- function(input, output, session) {
     df2$win <- ifelse(df2$Winnings > 0, 1, 0) %>% as.factor
     output$Bank1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                     axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                     axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank2 <-  renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                     axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                     axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
@@ -635,19 +635,19 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank3<- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
   }
@@ -768,19 +768,19 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
 
 
@@ -845,17 +845,17 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
@@ -918,12 +918,12 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"), title=element_text(size=20))+
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
         geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
   }
