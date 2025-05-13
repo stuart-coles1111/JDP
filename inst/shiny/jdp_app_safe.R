@@ -56,12 +56,12 @@ r5 <- matrix(0, nmatch/8, 4)
 rownames(r5) = 1:(nmatch/8)
 colnames(r5)= c('Player 1 id','Player 2 id', 'Player 1 score','Player 2 score')
 
-ui <- shinydashboard::dashboardPage(skin = "green",
-                                    shinydashboard::dashboardHeader(title = "Jogo do Pau"),
-                                    shinydashboard::dashboardSidebar(),
-                                    shinydashboard::dashboardBody(
+ui <- fluidPage(theme = shinytheme("cerulean"),
+                titlePanel("Jogo do Pau: Smartodds Lisbon Tournament"),
+
                 shiny::tabsetPanel(id = "inTabset",
                                    shiny::tabPanel("Round 1", value="panel1",
+                                                   fluidPage(
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -101,10 +101,11 @@ ui <- shinydashboard::dashboardPage(skin = "green",
                                                                                           style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
+                                                   )
                                    ),
 
                                    shiny::tabPanel("Round 2", value="panel2",
+                                                   fluidPage(
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -144,10 +145,11 @@ ui <- shinydashboard::dashboardPage(skin = "green",
                                                                                           style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
+                                                   )
                                    ),
 
                                    shiny::tabPanel("Round 3", value="panel3",
+                                                   fluidPage(
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -187,10 +189,11 @@ ui <- shinydashboard::dashboardPage(skin = "green",
                                                                                           style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
+                                                   )
                                    ),
 
                                    shiny::tabPanel("3rd/4th Place", value="panel4",
+                                                   fluidPage(
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -230,10 +233,11 @@ ui <- shinydashboard::dashboardPage(skin = "green",
                                                                                           style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
+                                                   )
                                    ),
 
                                    shiny::tabPanel("Final", value="panel5",
+                                                   fluidPage(
                                                      shiny::h3("Bets"),
                                                      fluidRow(
                                                        column(width = 5,
@@ -273,10 +277,10 @@ ui <- shinydashboard::dashboardPage(skin = "green",
                                                                                           style = "padding:8px; font-size:150%")
                                                        )
                                                      )
-
+                                                   )
                                    )
                 )
-)
+
 )
 
 server <- function(input, output, session) {
@@ -355,7 +359,7 @@ server <- function(input, output, session) {
         geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
     })
 
-    output$bets1 <- renderPlot({
+      output$bets1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
                                                                                         axis.title=element_text(size=18,face="bold"))+
         geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
