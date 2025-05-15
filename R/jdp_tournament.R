@@ -8,5 +8,5 @@
 #' @export
 #'
 jdp_tournament <- function() {
-  shiny::runApp("~/JDP/inst/shiny/jdp_app.R")
+  shiny::runApp("~/JDP/inst/shiny/jdp_app.R")  %>% suppressWarnings
 }
