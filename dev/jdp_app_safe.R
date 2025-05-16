@@ -56,231 +56,230 @@ r5 <- matrix(0, nmatch/8, 4)
 rownames(r5) = 1:(nmatch/8)
 colnames(r5)= c('Player 1 id','Player 2 id', 'Player 1 score','Player 2 score')
 
-ui <- fluidPage(theme = shinytheme("cerulean"),
-                titlePanel("Jogo do Pau: Smartodds Lisbon Tournament"),
+ui <- shinydashboard::dashboardPage(skin = "green",
+                                    shinydashboard::dashboardHeader(title = "Jogo do Pau"),
+                                    shinydashboard::dashboardSidebar(),
+                                    shinydashboard::dashboardBody(
+                                      shiny::tabsetPanel(id = "inTabset",
+                                                         tags$head(
+                                                           tags$style(type='text/css',
+                                                                      ".nav-tabs {font-size: 20px} ")),
+                                                         shiny::tabPanel("Round 1", value="panel1",
+                                                                         shiny::h3("Bets"),
+                                                                         fluidRow(
+                                                                           column(width = 5,
+                                                                                  matrixInput(
+                                                                                    "m1",
+                                                                                    value = m1,
+                                                                                    rows = list(extend = FALSE, names = TRUE),
+                                                                                    cols = list(extend = FALSE, names = TRUE)
+                                                                                  )
+                                                                           ),
 
-                shiny::tabsetPanel(id = "inTabset",
-                                   shiny::tabPanel("Round 1", value="panel1",
-                                                   fluidPage(
-                                                     shiny::h3("Bets"),
-                                                     fluidRow(
-                                                       column(width = 5,
-                                                              matrixInput(
-                                                                "m1",
-                                                                value = m1,
-                                                                rows = list(extend = FALSE, names = TRUE),
-                                                                cols = list(extend = FALSE, names = TRUE)
-                                                              )
-                                                       ),
+                                                                           column(offset = 2, width = 5, plotOutput("bets1"))
+                                                                         ),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "confirm_bets1",
+                                                                                                              label = "Confirm Bets",
+                                                                                                              type = "primary",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%"))),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         shiny::h3("Matches"),
+                                                                         fluidRow(
+                                                                           column(width =5, DT::DTOutput("table1")),
+                                                                           column(width = 5, plotOutput("Bank1"), offset = 2),
+                                                                         ),
 
-                                                       column(offset = 2, width = 5, plotOutput("bets1"))
-                                                     ),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets1",
-                                                                                          label = "Confirm Bets",
-                                                                                          type = "primary",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%"))),
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table1")),
-                                                       column(width = 5, plotOutput("Bank1"), offset = 2),
-                                                     ),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "play_game1",
+                                                                                                              label = "Match Results",
+                                                                                                              type = "warning",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%")
+                                                                           )
+                                                                         )
 
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "play_game1",
-                                                                                          label = "Match Results",
-                                                                                          type = "warning",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%")
-                                                       )
-                                                     )
-                                                   )
-                                   ),
+                                                         ),
 
-                                   shiny::tabPanel("Round 2", value="panel2",
-                                                   fluidPage(
-                                                     shiny::h3("Bets"),
-                                                     fluidRow(
-                                                       column(width = 5,
-                                                              matrixInput(
-                                                                "m2",
-                                                                value = m2,
-                                                                rows = list(extend = FALSE, names = TRUE),
-                                                                cols = list(extend = FALSE, names = TRUE)
-                                                              )
-                                                       ),
+                                                         shiny::tabPanel("Round 2", value="panel2",
+                                                                         shiny::h3("Bets"),
+                                                                         fluidRow(
+                                                                           column(width = 5,
+                                                                                  matrixInput(
+                                                                                    "m2",
+                                                                                    value = m2,
+                                                                                    rows = list(extend = FALSE, names = TRUE),
+                                                                                    cols = list(extend = FALSE, names = TRUE)
+                                                                                  )
+                                                                           ),
 
-                                                       column(offset = 2, width = 5, plotOutput("bets2"))
-                                                     ),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets2",
-                                                                                          label = "Confirm Bets",
-                                                                                          type = "primary",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%"))),
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table2")),
-                                                       column(width = 5, plotOutput("Bank2"), offset = 2),
-                                                     ),
+                                                                           column(offset = 2, width = 5, plotOutput("bets2"))
+                                                                         ),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "confirm_bets2",
+                                                                                                              label = "Confirm Bets",
+                                                                                                              type = "primary",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%"))),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         shiny::h3("Matches"),
+                                                                         fluidRow(
+                                                                           column(width =5, DT::DTOutput("table2")),
+                                                                           column(width = 5, plotOutput("Bank2"), offset = 2),
+                                                                         ),
 
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "play_game2",
-                                                                                          label = "Match Results",
-                                                                                          type = "warning",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%")
-                                                       )
-                                                     )
-                                                   )
-                                   ),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "play_game2",
+                                                                                                              label = "Match Results",
+                                                                                                              type = "warning",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%")
+                                                                           )
+                                                                         )
 
-                                   shiny::tabPanel("Round 3", value="panel3",
-                                                   fluidPage(
-                                                     shiny::h3("Bets"),
-                                                     fluidRow(
-                                                       column(width = 5,
-                                                              matrixInput(
-                                                                "m3",
-                                                                value = m3,
-                                                                rows = list(extend = FALSE, names = TRUE),
-                                                                cols = list(extend = FALSE, names = TRUE)
-                                                              )
-                                                       ),
+                                                         ),
 
-                                                       column(offset = 2, width = 5, plotOutput("bets3"))
-                                                     ),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets3",
-                                                                                          label = "Confirm Bets",
-                                                                                          type = "primary",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%"))),
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table3")),
-                                                       column(width = 5, plotOutput("Bank3"), offset = 2),
-                                                     ),
+                                                         shiny::tabPanel("Round 3", value="panel3",
+                                                                         shiny::h3("Bets"),
+                                                                         fluidRow(
+                                                                           column(width = 5,
+                                                                                  matrixInput(
+                                                                                    "m3",
+                                                                                    value = m3,
+                                                                                    rows = list(extend = FALSE, names = TRUE),
+                                                                                    cols = list(extend = FALSE, names = TRUE)
+                                                                                  )
+                                                                           ),
 
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "play_game3",
-                                                                                          label = "Match Results",
-                                                                                          type = "warning",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%")
-                                                       )
-                                                     )
-                                                   )
-                                   ),
+                                                                           column(offset = 2, width = 5, plotOutput("bets3"))
+                                                                         ),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "confirm_bets3",
+                                                                                                              label = "Confirm Bets",
+                                                                                                              type = "primary",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%"))),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         shiny::h3("Matches"),
+                                                                         fluidRow(
+                                                                           column(width =5, DT::DTOutput("table3")),
+                                                                           column(width = 5, plotOutput("Bank3"), offset = 2),
+                                                                         ),
 
-                                   shiny::tabPanel("3rd/4th Place", value="panel4",
-                                                   fluidPage(
-                                                     shiny::h3("Bets"),
-                                                     fluidRow(
-                                                       column(width = 5,
-                                                              matrixInput(
-                                                                "m4",
-                                                                value = m4,
-                                                                rows = list(extend = FALSE, names = TRUE),
-                                                                cols = list(extend = FALSE, names = TRUE)
-                                                              )
-                                                       ),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "play_game3",
+                                                                                                              label = "Match Results",
+                                                                                                              type = "warning",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%")
+                                                                           )
+                                                                         )
 
-                                                       column(offset = 2, width = 5, plotOutput("bets4"))
-                                                     ),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets4",
-                                                                                          label = "Confirm Bets",
-                                                                                          type = "primary",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%"))),
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table4")),
-                                                       column(width = 5, plotOutput("Bank4"), offset = 2),
-                                                     ),
+                                                         ),
 
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "play_game4",
-                                                                                          label = "Match Results",
-                                                                                          type = "warning",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%")
-                                                       )
-                                                     )
-                                                   )
-                                   ),
+                                                         shiny::tabPanel("3rd/4th Place", value="panel4",
+                                                                         shiny::h3("Bets"),
+                                                                         fluidRow(
+                                                                           column(width = 5,
+                                                                                  matrixInput(
+                                                                                    "m4",
+                                                                                    value = m4,
+                                                                                    rows = list(extend = FALSE, names = TRUE),
+                                                                                    cols = list(extend = FALSE, names = TRUE)
+                                                                                  )
+                                                                           ),
 
-                                   shiny::tabPanel("Final", value="panel5",
-                                                   fluidPage(
-                                                     shiny::h3("Bets"),
-                                                     fluidRow(
-                                                       column(width = 5,
-                                                              matrixInput(
-                                                                "m5",
-                                                                value = m5,
-                                                                rows = list(extend = FALSE, names = TRUE),
-                                                                cols = list(extend = FALSE, names = TRUE)
-                                                              )
-                                                       ),
+                                                                           column(offset = 2, width = 5, plotOutput("bets4"))
+                                                                         ),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "confirm_bets4",
+                                                                                                              label = "Confirm Bets",
+                                                                                                              type = "primary",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%"))),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         shiny::h3("Matches"),
+                                                                         fluidRow(
+                                                                           column(width =5, DT::DTOutput("table4")),
+                                                                           column(width = 5, plotOutput("Bank4"), offset = 2),
+                                                                         ),
 
-                                                       column(offset = 2, width = 5, plotOutput("bets5"))
-                                                     ),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "confirm_bets5",
-                                                                                          label = "Confirm Bets",
-                                                                                          type = "primary",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%"))),
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     shiny::h3("Matches"),
-                                                     fluidRow(
-                                                       column(width =5, DT::DTOutput("table5")),
-                                                       column(width = 5, plotOutput("Bank5"), offset = 2),
-                                                     ),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "play_game4",
+                                                                                                              label = "Match Results",
+                                                                                                              type = "warning",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%")
+                                                                           )
+                                                                         )
 
-                                                     shiny::br(),
-                                                     shiny::br(),
-                                                     fluidRow(
-                                                       column(width = 2,
-                                                              dipsaus::actionButtonStyled(inputId = "play_game5",
-                                                                                          label = "Match Results",
-                                                                                          type = "warning",
-                                                                                          class = "btn-xs",
-                                                                                          style = "padding:8px; font-size:150%")
-                                                       )
-                                                     )
-                                                   )
-                                   )
-                )
+                                                         ),
 
+                                                         shiny::tabPanel("Final", value="panel5",
+                                                                         shiny::h3("Bets"),
+                                                                         fluidRow(
+                                                                           column(width = 5,
+                                                                                  matrixInput(
+                                                                                    "m5",
+                                                                                    value = m5,
+                                                                                    rows = list(extend = FALSE, names = TRUE),
+                                                                                    cols = list(extend = FALSE, names = TRUE)
+                                                                                  )
+                                                                           ),
+
+                                                                           column(offset = 2, width = 5, plotOutput("bets5"))
+                                                                         ),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "confirm_bets5",
+                                                                                                              label = "Confirm Bets",
+                                                                                                              type = "primary",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%"))),
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         shiny::h3("Matches"),
+                                                                         fluidRow(
+                                                                           column(width =5, DT::DTOutput("table5")),
+                                                                           column(width = 5, plotOutput("Bank5"), offset = 2),
+                                                                         ),
+
+                                                                         shiny::br(),
+                                                                         shiny::br(),
+                                                                         fluidRow(
+                                                                           column(width = 2,
+                                                                                  dipsaus::actionButtonStyled(inputId = "play_game5",
+                                                                                                              label = "Match Results",
+                                                                                                              type = "warning",
+                                                                                                              class = "btn-xs",
+                                                                                                              style = "padding:8px; font-size:150%")
+                                                                           )
+                                                                         )
+
+                                                         )
+                                      )
+                                    )
 )
 
 server <- function(input, output, session) {
@@ -337,8 +336,9 @@ server <- function(input, output, session) {
 
   output$Bank1 <- renderPlot({
     ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold")) +
-      geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18),
+                                                                                   title=element_text(size=20)) +
+      geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
   })
 
 
@@ -355,14 +355,14 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
-      output$bets1 <- renderPlot({
+    output$bets1 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
   )
@@ -377,13 +377,13 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
   )
@@ -398,13 +398,13 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
   )
@@ -419,13 +419,13 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
   )
@@ -440,13 +440,13 @@ server <- function(input, output, session) {
     df <- data.frame(Team = (1:nTeam), Bank = values$Bank, Winnings = bet_sums)
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue")+theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                        axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10)
+                                                                                        axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green")+ ylab("Amount Staked") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Stake This Round")
     })
   }
   )
@@ -503,20 +503,20 @@ server <- function(input, output, session) {
     df2$win <- ifelse(df2$Winnings > 0, 1, 0) %>% as.factor
     output$Bank1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                     axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets1 <- renderPlot({
       ggplot(df2) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank2 <-  renderPlot({
       ggplot(df2) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                     axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                     axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     dfn2 <- data.frame(
@@ -635,20 +635,20 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets2 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank3<- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
   }
   )
@@ -768,20 +768,20 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
     output$bets3 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
 
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
 
 
     })
@@ -845,18 +845,18 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets4 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
 
   }
@@ -918,13 +918,13 @@ server <- function(input, output, session) {
     df$win <- ifelse(df$Winnings > 0, 1, 0) %>% as.factor
     output$Bank5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Bank), width = 0.25, fill="lightblue") +theme(axis.text=element_text(size=16),
-                                                                                    axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10)
+                                                                                    axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = init_Bank, colour="red") + scale_x_continuous(breaks = 1:10) + ggtitle("Total Bank")
     })
     output$bets5 <- renderPlot({
       ggplot(df) + geom_col(aes(Team, Winnings, fill = win), width = 0.25,) +theme(axis.text=element_text(size=16),
-                                                                                   axis.title=element_text(size=18,face="bold"))+
-        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)
+                                                                                   axis.title=element_text(size=18), title=element_text(size=20))+
+        geom_hline(yintercept = 0, colour="green") + theme(legend.position="none") + scale_x_continuous(breaks = 1:10)  + ggtitle("Winnings This Round")
     })
   }
   )
